@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartTask | Buyer & Seller</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6fb;
+    color: #222943;
+}
+
+header {
+    background: #252a40;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    color: #8c9eff;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+}
+
+nav a:hover {
+    color: #8c9eff;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(120deg, #252a40, #5865a9);
+    color: white;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    padding: 12px 18px;
+    font-weight: bold;
+}
+
+.primary {
+    background: #8c9eff;
+    color: #20243a;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+h2.section-title {
+    margin-bottom: 20px;
+}
+
+.role-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.role-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px #0000000b;
+}
+
+.role-card .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.role-card h3 {
+    margin-bottom: 12px;
+}
+
+.role-card p {
+    color: #737990;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.role-card button {
+    background: #5865c7;
+    color: white;
+}
+
+.panel {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 35px;
+    box-shadow: 0 4px 15px #0000000b;
+}
+
+.hidden {
+    display: none;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 1px solid #d8dbea;
+    border-radius: 7px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #5865c7;
+}
+
+.form-button {
+    background: #5865c7;
+    color: white;
+    width: 100%;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 4px 15px #0000000b;
+}
+
+.product-image {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef0ff;
+    border-radius: 9px;
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    color: #737990;
+    margin: 8px 0;
+}
+
+.price {
+    color: #5865c7 !important;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.product-card button {
+    width: 100%;
+    background: #5865c7;
+    color: white;
+    margin-top: 10px;
+}
+
+.product-card .remove-btn {
+    background: #ffe5e5;
+    color: #d63838;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-row input {
+    margin: 0;
+}
+
+.cart-box {
+    background: white;
+    padding: 22px;
+    margin-top: 30px;
+    border-radius: 12px;
+}
+
+.cart-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.cart-item button {
+    padding: 6px 10px;
+    background: #ffe5e5;
+    color: #d63838;
+}
+
+.cart-total {
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+.empty {
+    color: #737990;
+    padding: 15px 0;
+}
+
+footer {
+    background: #252a40;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+@media(max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 8px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SmartTask.</h1>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#roles">Buyer & Seller</a>
+        <a href="#shop">Shop</a>
+        <a href="#cart">Cart 🛒 <span id="cartCount">0</span></a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h2>Your Smart Shopping Destination</h2>
+    <p>
+        Buy your favourite products and manage your business in one place.<br>
+        Simple shopping. Smart selling.
+    </p>
+    <button class="primary" onclick="showShop()">Explore Products →</button>
+</section>
+
+<main class="container">
+
+    <section id="roles">
+        <h2 class="section-title">Choose Your Role</h2>
+
+        <div class="role-box">
+            <div class="role-card">
+                <div class="icon">🛍️</div>
+                <h3>I'm a Buyer</h3>
+                <p>Explore products, add items to your cart and place a demo order.</p>
+                <button onclick="openBuyer()">Continue as Buyer</button>
+            </div>
+
+            <div class="role-card">
+                <div class="icon">🏪</div>
+                <h3>I'm a Seller</h3>
+                <p>Add your products, set prices and manage your product listings.</p>
+                <button onclick="openSeller()">Continue as Seller</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="sellerPanel" class="panel hidden">
+        <h2 class="section-title">🏪 Seller Dashboard</h2>
+        <p>Add a product to display it in the SmartTask marketplace.</p>
+
+        <form id="productForm">
+            <label>Product Name</label>
+            <input id="productName" type="text" placeholder="Example: Headphones" maxlength="60" required>
+
+            <label>Price (₹)</label>
+            <input id="productPrice" type="number" placeholder="Enter price" min="1" max="10000000" step="0.01" required>
+
+            <label>Category</label>
+            <select id="productCategory">
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Home">Home & Living</option>
+            </select>
+
+            <label>Product Icon</label>
+            <select id="productIcon">
+                <option value="🎧">🎧 Headphones</option>
+                <option value="👕">👕 Clothing</option>
+                <option value="⌚">⌚ Watch</option>
+                <option value="🎒">🎒 Bag</option>
+                <option value="👟">👟 Shoes</option>
+                <option value="📱">📱 Mobile</option>
+                <option value="🏠">🏠 Home Product</option>
+                <option value="🎁">🎁 Other</option>
+            </select>
+
+            <button type="submit" class="form-button">+ Add Product</button>
+        </form>
+    </section>
+
+    <section id="shop">
+        <h2 class="section-title">🛒 Explore Products</h2>
+
+        <div class="search-row">
+            <input type="text" id="searchInput" placeholder="Search products...">
+
+            <select id="categoryFilter">
+                <option value="All">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Home">Home & Living</option>
+            </select>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section id="cart" class="cart-box">
+        <h2 class="section-title">🛒 Your Shopping Cart</h2>
+        <div id="cartItems">
+            <p class="empty">Your cart is empty.</p>
+        </div>
+
+        <p class="cart-total">Total: ₹<span id="cartTotal">0.00</span></p>
+
+        <button class="primary" style="margin-top:15px" onclick="checkout()">
+            Place Demo Order
+        </button>
+    </section>
+
+    <section id="orderPanel" class="panel hidden">
+        <h2>✅ Demo Order Confirmation</h2>
+        <p id="orderMessage" style="margin-top:12px;line-height:1.7"></p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 SmartTask | Buyer & Seller Marketplace</p>
+    <p style="margin-top:8px">Buy Smart. Sell Better. 💜</p>
+</footer>
+
+<script>
+const defaultProducts = [
+    {id: 1, name: "Wireless Headphones", price: 1499, category: "Electronics", icon: "🎧"},
+    {id: 2, name: "Classic T-Shirt", price: 599, category: "Fashion", icon: "👕"},
+    {id: 3, name: "Stylish Watch", price: 999, category: "Accessories", icon: "⌚"},
+    {id: 4, name: "Travel Backpack", price: 1299, category: "Fashion", icon: "🎒"},
+    {id: 5, name: "Running Shoes", price: 1799, category: "Fashion", icon: "👟"},
+    {id: 6, name: "Smartphone", price: 12999, category: "Electronics", icon: "📱"}
+];
+
+function loadData(key, fallback) {
+    try {
+        const data = JSON.parse(localStorage.getItem(key));
+        return data === null ? fallback : data;
+    } catch (error) {
+        return fallback;
+    }
+}
+
+let products = loadData("smartTaskProducts", defaultProducts);
+let cart = loadData("smartTaskCart", []);
+
+if (!Array.isArray(products)) products = defaultProducts;
+if (!Array.isArray(cart)) cart = [];
+
+function saveData() {
+    localStorage.setItem("smartTaskProducts", JSON.stringify(products));
+    localStorage.setItem("smartTaskCart", JSON.stringify(cart));
+}
+
+function openBuyer() {
+    document.getElementById("shop").scrollIntoView({behavior: "smooth"});
+}
+
+function openSeller() {
+    document.getElementById("sellerPanel").classList.remove("hidden");
+    document.getElementById("sellerPanel").scrollIntoView({behavior: "smooth"});
+}
+
+function showShop() {
+    document.getElementById("shop").scrollIntoView({behavior: "smooth"});
+}
+
+function renderProducts() {
+    const grid = document.getElementById("productGrid");
+    const search = document.getElementById("searchInput").value.toLowerCase();
+    const category = document.getElementById("categoryFilter").value;
+
+    grid.replaceChildren();
+
+    const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(search) &&
+        (category === "All" || product.category === category)
+    );
+
+    if (filtered.length === 0) {
+        const message = document.createElement("p");
+        message.className = "empty";
+        message.textContent = "No products found. Try another search.";
+        grid.appendChild(message);
+        return;
+    }
+
+    filtered.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+
+        const image = document.createElement("div");
+        image.className = "product-image";
+        image.textContent = product.icon;
+
+        const name = document.createElement("h3");
+        name.textContent = product.name;
+
+        const categoryText = document.createElement("p");
+        categoryText.textContent = product.category;
+
+        const price = document.createElement("p");
+        price.className = "price";
+        price.textContent = "₹" + Number(product.price).toLocaleString("en-IN");
+
+        const addButton = document.createElement("button");
+        addButton.textContent = "Add to Cart 🛒";
+        addButton.addEventListener("click", () => addToCart(product.id));
+
+        card.append(image, name, categoryText, price, addButton);
+
+        if (product.custom) {
+            const removeButton = document.createElement("button");
+            removeButton.className = "remove-btn";
+            removeButton.textContent = "Remove Listing";
+            removeButton.addEventListener("click", () => removeProduct(product.id));
+            card.appendChild(removeButton);
+        }
+
+        grid.appendChild(card);
+    });
+}
+
+function addToCart(id) {
+    const product = products.find(item => item.id === id);
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({id: product.id, quantity: 1});
+    }
+
+    saveData();
+    renderCart();
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveData();
+    renderCart();
+}
+
+function renderCart() {
+    const container = document.getElementById("cartItems");
+    container.replaceChildren();
+
+    let total = 0;
+    let count = 0;
+
+    cart = cart.filter(item =>
+        products.some(product => product.id === item.id) &&
+        Number.isInteger(item.quantity) &&
+        item.quantity > 0
+    );
+
+    if (cart.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "empty";
+        empty.textContent = "Your cart is empty.";
+        container.appendChild(empty);
+    }
+
+    cart.forEach(item => {
+        const product = products.find(p => p.id === item.id);
+        if (!product) return;
+
+        total += product.price * item.quantity;
+        count += item.quantity;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const info = document.createElement("span");
+        info.textContent = product.icon + " " + product.name +
+            " × " + item.quantity + " — ₹" +
+            (product.price * item.quantity).toLocaleString("en-IN");
+
+        const remove = document.createElement("button");
+        remove.textContent = "Remove";
+        remove.addEventListener("click", () => removeFromCart(item.id));
+
+        row.append(info, remove);
+        container.appendChild(row);
+    });
+
+    document.getElementById("cartCount").textContent = count;
+    document.getElementById("cartTotal").textContent =
+        total.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    saveData();
+}
+
+document.getElementById("productForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("productName").value.trim();
+    const price = Number(document.getElementById("productPrice").value);
+    const category = document.getElementById("productCategory").value;
+    const icon = document.getElementById("productIcon").value;
+
+    if (!name || !Number.isFinite(price) || price <= 0) {
+        alert("Enter a valid product name and price.");
+        return;
+    }
+
+    products.push({
+        id: Date.now(),
+        name: name,
+        price: price,
+        category: category,
+        icon: icon,
+        custom: true
+    });
+
+    saveData();
+    renderProducts();
+
+    this.reset();
+
+    alert("Product added successfully!");
+    showShop();
+});
+
+function removeProduct(id) {
+    if (!confirm("Remove this product from your listing?")) return;
+
+    products = products.filter(product => product.id !== id);
+    cart = cart.filter(item => item.id !== id);
+
+    saveData();
+    renderProducts();
+    renderCart();
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty. Add products first!");
+        return;
+    }
+
+    const total = cart.reduce((sum, item) => {
+        const product = products.find(p => p.id === item.id);
+        return sum + (product ? product.price * item.quantity : 0);
+    }, 0);
+
+    document.getElementById("orderMessage").textContent =
+        "Your demo order has been placed successfully! " +
+        "Order total: ₹" + total.toLocaleString("en-IN") +
+        ". This is a demonstration only; no real payment was made.";
+
+    document.getElementById("orderPanel").classList.remove("hidden");
+
+    cart = [];
+    saveData();
+    renderCart();
+
+    document.getElementById("orderPanel").scrollIntoView({behavior: "smooth"});
+}
+
+document.getElementById("searchInput").addEventListener("input", renderProducts);
+document.getElementById("categoryFilter").addEventListener("change", renderProducts);
+
+renderProducts();
+renderCart();
+</script>
+
+</body>
+</html>
